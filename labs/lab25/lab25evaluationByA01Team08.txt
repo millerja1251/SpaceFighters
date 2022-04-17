@@ -9,16 +9,13 @@ Elliot Helwig ehelwig
 
 0.4*1 + 0.4*0.95 + 0.2*1 = 0.98
 
-Everything looked for the design and everything followed MVC but in each of the documents you need to have your name
-and corresponding IU emails which would most likely lose you some points. I would suggest that instead of having the 
-README with all of your names you have it at the top of all of your documents.
+Everything looked for the design and everything followed MVC but in each of the documents you need to have your names and emails with your team name and the date of the submission
 
 2. Correctly Incorporating all required user interface elements
 
-0.4*1 + 0.4*0.8 + 0.2*1 = 0.92
+0.4*1 + 0.4*1 + 0.2*1 = 1
 
-Everything was laid out but we did not see anywhere what type of container view controller you guys were going to use
-and if there would be one at all so just make sure you guys have that since it is one of the requirements.
+Everything was laid out well and there aren't any missing things that would be there
 
 3. Make substantial use of the required listed frameworks
 
@@ -26,4 +23,4 @@ and if there would be one at all so just make sure you guys have that since it i
 
 Everything here looks good you guys have all the requirements met for the frameworks.
 
-Overall 96.8%
+Overall 99.2%
