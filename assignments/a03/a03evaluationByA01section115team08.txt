@@ -1,0 +1,49 @@
+C323/Spring 2022
+Assignment 3
+Apr 24 11:59
+Jackson Miller jm122
+Hyungsuk Kang kang18
+Elliot Helwig ehelwig
+
+I. Documentation
+
+1. Following the MVC Design Pattern
+
+0.4*1 + 0.4*0.95 + 0.2*1 = 0.98
+
+Everything looked for the design and everything followed MVC but in each of the documents you need to have your names and emails with your team name and the date of the submission
+
+2. Correctly Incorporating all required user interface elements
+
+0.4*1 + 0.4*1 + 0.2*1 = 1
+
+Everything looked good and all of them where seen in the documents
+
+3. Make substantial use of the required listed frameworks
+
+0.4*1 + 0.4*1 + 0.2*1 = 1
+
+They had all of the required amounts of frameworks shown in the documentation
+
+Overall 99.2%
+
+II. 
+
+1. Program Completeness
+
+97%
+
+The app did not crash and there did not seem to be any problems running the code. The way the code was 
+implemented also worked every time that I ran the code such as the fact that the ball was able to 
+bounce the whole time and nothing went wrong in that aspect. I only will say I think that the table 
+view should have been visible and connected to one of the other views.
+
+2. Specifications
+
+100%
+
+Everything that was required was there. All the views were in the main with a coresopiong view 
+controller. There was also implementation of more than two of the frameworks. Which was what was 
+needed for the assignment.
+
+98.5%
