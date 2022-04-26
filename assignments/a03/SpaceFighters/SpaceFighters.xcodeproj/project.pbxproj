@@ -24,6 +24,9 @@
 		02B66F70280B926800604885 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02B66F6E280B926800604885 /* UserModel.xcdatamodeld */; };
 		02B66F72280B99FF00604885 /* HardHighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B66F71280B99FF00604885 /* HardHighScoreTableViewCell.swift */; };
 		02B66F74280BACA600604885 /* OptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B66F73280BACA600604885 /* OptionTableViewController.swift */; };
+		3D6EA5F42817960800748BA1 /* background_sound_menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA5F32817960800748BA1 /* background_sound_menu.mp3 */; };
+		3D6EA5F62817960D00748BA1 /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA5F52817960D00748BA1 /* pop.mp3 */; };
+		3D6EA5F82817961000748BA1 /* game_background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA5F72817961000748BA1 /* game_background.mp3 */; };
 		81B2AB6528177DF20063B135 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 81B2AB6428177DF20063B135 /* Explosion.sks */; };
 		81DCBB1B28179404007B2C97 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = 81DCBB1A28179404007B2C97 /* Stars.sks */; };
 		81DCBB1E28179418007B2C97 /* enemy_down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 81DCBB1C28179418007B2C97 /* enemy_down.mp3 */; };
@@ -49,6 +52,9 @@
 		02B66F6F280B926800604885 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		02B66F71280B99FF00604885 /* HardHighScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardHighScoreTableViewCell.swift; sourceTree = "<group>"; };
 		02B66F73280BACA600604885 /* OptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewController.swift; sourceTree = "<group>"; };
+		3D6EA5F32817960800748BA1 /* background_sound_menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_sound_menu.mp3; sourceTree = "<group>"; };
+		3D6EA5F52817960D00748BA1 /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		3D6EA5F72817961000748BA1 /* game_background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game_background.mp3; sourceTree = "<group>"; };
 		81B2AB6428177DF20063B135 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		81DCBB1A28179404007B2C97 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
 		81DCBB1C28179418007B2C97 /* enemy_down.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = enemy_down.mp3; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 				81DCBB1A28179404007B2C97 /* Stars.sks */,
 				81DCBB1C28179418007B2C97 /* enemy_down.mp3 */,
 				81DCBB1D28179418007B2C97 /* laser_shot.mp3 */,
+				3D6EA5F32817960800748BA1 /* background_sound_menu.mp3 */,
+				3D6EA5F52817960D00748BA1 /* pop.mp3 */,
+				3D6EA5F72817961000748BA1 /* game_background.mp3 */,
 			);
 			path = SpaceFighters;
 			sourceTree = "<group>";
@@ -172,8 +181,11 @@
 				029B7D48280B451900DE0242 /* Main.storyboard in Resources */,
 				029B7D3F280B451900DE0242 /* GameScene.sks in Resources */,
 				029B7D4A280B451C00DE0242 /* Assets.xcassets in Resources */,
+				3D6EA5F62817960D00748BA1 /* pop.mp3 in Resources */,
 				81DCBB1E28179418007B2C97 /* enemy_down.mp3 in Resources */,
+				3D6EA5F42817960800748BA1 /* background_sound_menu.mp3 in Resources */,
 				81DCBB1B28179404007B2C97 /* Stars.sks in Resources */,
+				3D6EA5F82817961000748BA1 /* game_background.mp3 in Resources */,
 				029B7D4D280B451C00DE0242 /* LaunchScreen.storyboard in Resources */,
 				81B2AB6528177DF20063B135 /* Explosion.sks in Resources */,
 			);

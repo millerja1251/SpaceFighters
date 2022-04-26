@@ -6,14 +6,16 @@
 //  Elliot Helwig ehelwig@iu.edu
 //  Hyungsuk Kang kang18@iu.edu
 //  SpaceFighters
-//  Apr 25 11:59
+//  Apr 24 11:59
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class OptionsViewController: UIViewController {
 	
 	var appDelegate: AppDelegate?
+    var audioPlayer : AVPlayer!
 	
 	@IBOutlet weak var currentUser: UILabel!
 	@IBOutlet weak var tableView: UITableView!
@@ -27,6 +29,7 @@ class OptionsViewController: UIViewController {
 		viewController.modalPresentationStyle = .fullScreen
 		
 		self.present(viewController, animated: false, completion: nil)
+        popSound()
 	}
 	
 	//Changes the current players difficulty based on if the switch is on or off
@@ -166,4 +169,20 @@ extension OptionsViewController: UITableViewDelegate, UITableViewDataSource {
 			
 		}
 	}
+    func popSound() {
+        guard let url = Bundle.main.url(forResource: "pop", withExtension: "mp3") else {
+            print("error to get the mp3 file")
+            return
+            
+        }
+        do {
+            audioPlayer = try AVPlayer(url: url)
+            audioPlayer?.play()
+            
+        } catch {
+            print("audio file error")
+            
+        }
+        
+    }
 }
