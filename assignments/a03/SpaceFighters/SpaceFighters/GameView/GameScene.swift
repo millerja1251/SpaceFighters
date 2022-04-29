@@ -13,21 +13,33 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 	
+	// sets up the player sprite, the score label, and the app context
 	let player = SKSpriteNode(imageNamed: "player")
 	var scoreLabel: SKLabelNode!
+	let context = AppDelegate.viewContext
+	
+	// sets up a score variable that also sets the score label when updated
 	var score: Int = 0 {
 		didSet {
 			scoreLabel.text = "Score: \(score)"
 		}
 	}
 	
-	var gameTimer: Timer!
-	var enemyTypes = ["fast", "normal", "slow"]
+	// sets up the parent controller reference for self destruction
+	var parentController: GameViewController?
 	
+	var gameTimer: Timer!
+	
+	// bitfields for collision detection, handled by SpriteKit and GameplayKit
 	let bottomCategory: UInt32 = 0x1 << 2
 	let enemyCategory: UInt32 = 0x1 << 1
 	let bulletCategory: UInt32 = 0x1 << 0
 	
+	
+	// function to grab parent controller (used by GameViewController to give reference to itself)
+	func giveParentController(controller: GameViewController) {
+		parentController = controller
+	}
 	
 	override func didMove(to view: SKView) {
 		if let stars = SKEmitterNode(fileNamed: "Stars") {
@@ -74,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		
 	}
 	
+	// detect player sliding their finger and update the player x-coordinate accordingly
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		for touch in touches {
 			let location = touch.location(in: self)
@@ -81,9 +94,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		}
 	}
 	
+	// adds an enemy to the screen, and places it somewhere on the frame (and not right on the edges)
+	// also adds physics and collision to spawned enemy
+	// sets up an animation for them to move down (can be disrupted by collision)
 	@objc func addEnemy() {
-		enemyTypes = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: enemyTypes) as! [String]
-		
 		let enemy = SKSpriteNode(imageNamed: "enemy")
 		
 		let randomEnemyPosition = GKRandomDistribution(lowestValue: Int(frame.midX - 100), highestValue: Int(frame.midX + 100))
@@ -117,10 +131,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		
 	}
 	
+	// on shake gesture, shoot
 	func shakeHandler() {
 		shoot()
 	}
 	
+	// to shoot, play the sound (and don't wait for it to complete to continue code execution
+	// set up the sprite, the physics and collision, as well as its upward animation
 	func shoot() {
 		self.run(SKAction.playSoundFileNamed("laser_shot.mp3", waitForCompletion: false))
 		
@@ -150,6 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		bulletNode.run(SKAction.sequence(actionArray))
 	}
 	
+	// detect physics collisions on two physics bodies and check for the type of collision (and what to do about it)
 	func didBegin(_ contact: SKPhysicsContact) {
 		var firstBody: SKPhysicsBody
 		var secondBody: SKPhysicsBody
@@ -170,26 +188,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			}
 		}
 		
+		// on enemy hitting bottom of screen, end current game session, and if applicable update and save scores
 		if (firstBody.categoryBitMask == enemyCategory && secondBody.categoryBitMask == bottomCategory) {
 			let appDelegate = UIApplication.shared.delegate as! AppDelegate
 			if let currentPlayer = appDelegate.currentGamePlayer {
 				if (currentPlayer.hardMode && currentPlayer.hardModeHighScore < score) {
 					currentPlayer.hardModeHighScore = Int64(score)
+					do {
+						try self.context.save()
+					} catch {
+						
+					}
 				} else if (!currentPlayer.hardMode && currentPlayer.easyModeHighScore < score) {
 					currentPlayer.easyModeHighScore = Int64(score)
+					do {
+						try self.context.save()
+					} catch {
+						
+					}
 				}
 			}
 			restart()
 		}
 	}
 	
+	// restart scene by passing off to parent and killing this scene and creating a new one
 	func restart() {
-		let gameScene = GameScene(size: self.frame.size)
-		gameScene.scaleMode = .aspectFill
-		
-		self.view!.presentScene(gameScene)
+		if let parentController = parentController {
+			parentController.gameEnded()
+		}
 	}
 	
+	// increment score on collision with enemy, play a sound, and remove both nodes
 	func bulletCollisionWithEnemy(bulletNode: SKSpriteNode, enemyNode: SKSpriteNode) {
 		let explosion = SKEmitterNode(fileNamed: "Explosion")!
 		explosion.position = enemyNode.position

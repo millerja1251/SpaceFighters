@@ -6,14 +6,16 @@
 //  Elliot Helwig ehelwig@iu.edu
 //  Hyungsuk Kang kang18@iu.edu
 //  SpaceFighters
-//  Apr 24 11:59
+//  Apr 28 11:59
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class OptionsViewController: UIViewController {
 	
 	var appDelegate: AppDelegate?
+	var popSound: AVPlayer?
 	
 	@IBOutlet weak var currentUser: UILabel!
 	@IBOutlet weak var tableView: UITableView!
@@ -21,16 +23,18 @@ class OptionsViewController: UIViewController {
 	var users: [GamePlayer] = []
 	@IBOutlet weak var gameModeSwitch: UISwitch!
 	
-	//Segue back to the home view with a button
+	// Segue back to the home view with a button
 	@IBAction func returnHome(_ sender: Any) {
 		let viewController = self.storyboard?.instantiateViewController(withIdentifier: "homeView") as! HomeMenuViewController
 		viewController.modalPresentationStyle = .fullScreen
 		
+		popSound?.play()
 		self.present(viewController, animated: false, completion: nil)
 	}
 	
-	//Changes the current players difficulty based on if the switch is on or off
+	// Changes the current players difficulty based on if the switch is on or off
 	@IBAction func difficultyChanged(_ sender: UISwitch) {
+		popSound?.play()
 		if let currentGamePlayer = self.appDelegate?.currentGamePlayer {
 			if (sender.isOn == true){
 				currentGamePlayer.hardMode = true
@@ -71,9 +75,13 @@ class OptionsViewController: UIViewController {
 			}
 		}
 		
+		if let popSoundURL = Bundle.main.url(forResource: "pop", withExtension: "mp3") {
+			popSound = AVPlayer(url: popSoundURL)
+		}
+		
 	}
 	
-	//Fetched the data from the context and puts it into a list called users
+	// Fetched the data from the context and puts it into a list called users
 	func getUsers() {
 		do {
 			self.users = try context.fetch(GamePlayer.fetchRequest())
@@ -110,7 +118,7 @@ extension OptionsViewController: UITableViewDelegate, UITableViewDataSource {
 		return cell
 	}
 	
-	//Allows for the deletion of a instance of a GamePlayer in the context with a slideing
+	// Allows for the deletion of a instance of a GamePlayer in the context with a slideing
 	// delete button on the table view
 	func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		
@@ -128,7 +136,7 @@ extension OptionsViewController: UITableViewDelegate, UITableViewDataSource {
 		return UISwipeActionsConfiguration(actions: [action])
 	}
 	
-	//Changes the current player based off of the row selected in the table
+	// Changes the current player based off of the row selected in the table
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		self.appDelegate?.currentGamePlayer = self.users[indexPath.row]
 		
@@ -143,21 +151,6 @@ extension OptionsViewController: UITableViewDelegate, UITableViewDataSource {
 				gameModeSwitch.isOn = false
 			}
 		}
-		
-		/*
-		do {
-			if let currentPlayer = try context.fetch(Curr){
-				appDelegate?.currentGamePlayer = currentPlayer
-			} else {
-				let newcurrentUser: NSManagedObject = NSEntityDescription.insertNewObject(forEntityName: "CurrentPlayer", into: context)
-				self.appDelegate?.currentGamePlayer?.setValue(newcurrentUser, forKey: "player")
-			}
-			
-		}
-		catch {
-			
-		}
-		*/
 		
 		do {
 			try self.context.save()
