@@ -1,8 +1,0 @@
-C323/Spring 2022
-Assignment 3
-Apr 25 11:59
-Jackson Miller jm122
-Hyungsuk Kang kang18
-Elliot Helwig ehelwig
-
-To fire the gun during the game the user will shake the screen the command for this in the simulator is ctrl + cmd + z. Also for the user to move the space ship just place just place cursor or finger on spaceship and move back and forth.
